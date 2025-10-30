@@ -1,18 +1,11 @@
+<script setup lang="ts"></script>
+
 <template>
-  <div>
-    <NavBar />
-    <router-view />
-  </div>
+  <h1>You did it!</h1>
+  <p>
+    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
+    documentation
+  </p>
 </template>
 
-<script setup lang="ts">
-import NavBar from "@/components/layout/nav-bar.vue";
-</script>
-
-<style>
-/* minimal global styles */
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-}
-</style>
+<style scoped></style>

@@ -1,9 +1,8 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'
 
-const routes: RouteRecordRaw[] = [
-  { path: '/', redirect: '/requester' },
-  { path: '/requester', component: () => import('@/modules/requester/pages/requester-dashboard.page.vue') },
-  { path: '/validator', component: () => import('@/modules/validator/pages/validator-dashboard.page.vue') }
-];
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [],
+})
 
-export default createRouter({ history: createWebHistory(), routes });
+export default router
