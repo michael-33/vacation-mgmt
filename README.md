@@ -37,6 +37,12 @@ Useful root scripts
 - Typecheck all: `yarn typecheck`
 - Test all: `yarn test`
 
+## environment variables
+
+- you don't need any `.env` files to run the project with defaults.
+- if you want to override defaults, copy values from `.env.example` files and create optional env files in frontend and backend directories
+
+
 ## Technical choices
 
 - Monorepo: Yarn workspaces (`apps/*`, `packages/*`) for shared types and schemas.
