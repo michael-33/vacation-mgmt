@@ -1,6 +1,7 @@
 .vscode
 .env
-apps/backend/data/*.sqlite
+apps/backend/data/**
+!apps/backend/data/.gitkeep
 
 # Logs
 logs
