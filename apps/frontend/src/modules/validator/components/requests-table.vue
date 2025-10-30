@@ -76,12 +76,12 @@ const columns = ref([
         h(
           NButton,
           { size: "small", type: "primary", onClick: () => approve(row) },
-          { default: () => "approve" }
+          { default: () => "approve" },
         ),
         h(
           NButton,
           { size: "small", type: "error", onClick: () => reject(row) },
-          { default: () => "reject" }
+          { default: () => "reject" },
         ),
       ]),
   },

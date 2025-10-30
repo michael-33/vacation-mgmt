@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const UserHeaderSchema = z.object({
   userId: z.coerce.number().int().positive(),

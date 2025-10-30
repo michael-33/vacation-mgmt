@@ -5,7 +5,7 @@ import { RequestStatus } from "common";
 // repository functions for interacting with the vacation_requests table
 export const requestRepo = {
   async create(
-    data: Omit<VacationRequest, "id" | "created_at">
+    data: Omit<VacationRequest, "id" | "created_at">,
   ): Promise<void> {
     await db<VacationRequest>("vacation_requests").insert(data);
   },
@@ -21,7 +21,7 @@ export const requestRepo = {
   async updateStatus(
     id: number,
     status: RequestStatus,
-    comments?: string
+    comments?: string,
   ): Promise<void> {
     await db<VacationRequest>("vacation_requests")
       .where({ id })

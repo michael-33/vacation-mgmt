@@ -28,15 +28,19 @@ async function onSubmit() {
     return;
   }
   const [start, end] = dates.value;
-  await api.post("/requests", {
-    startDate: new Date(start).toISOString().slice(0, 10),
-    endDate: new Date(end).toISOString().slice(0, 10),
-    reason: reason.value || null,
-  });
-  message.success("request submitted");
-  dates.value = null;
-  reason.value = "";
-  // emit to parent to reload table
-  defineEmits<{ (e: "submitted"): void }>().call(null, "submitted");
+  try {
+    await api.post("/requests", {
+      startDate: new Date(start).toISOString().slice(0, 10),
+      endDate: new Date(end).toISOString().slice(0, 10),
+      reason: reason.value || null,
+    });
+    message.success("request submitted");
+    dates.value = null;
+    reason.value = "";
+    // emit to parent to reload table
+    defineEmits<{ (e: "submitted"): void }>().call(null, "submitted");
+  } catch (e) {
+    console.error(e);
+  }
 }
 </script>

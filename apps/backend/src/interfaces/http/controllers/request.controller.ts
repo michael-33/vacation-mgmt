@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
-import { createVacationRequest } from '../../../application/usecases/create-request.usecase.js';
-import { listMyRequests } from '../../../application/usecases/list-my-requests.usecase.js';
-import { listAllRequests } from '../../../application/usecases/list-all-requests.usecase.js';
-import { approveRequest } from '../../../application/usecases/approve-request.usecase.js';
-import { rejectRequest } from '../../../application/usecases/reject-request.usecase.js';
+import { Request, Response } from "express";
+import { createVacationRequest } from "../../../application/usecases/create-request.usecase.js";
+import { listMyRequests } from "../../../application/usecases/list-my-requests.usecase.js";
+import { listAllRequests } from "../../../application/usecases/list-all-requests.usecase.js";
+import { approveRequest } from "../../../application/usecases/approve-request.usecase.js";
+import { rejectRequest } from "../../../application/usecases/reject-request.usecase.js";
 
 // http handlers for vacation requests
 export const requestController = {
@@ -40,5 +40,5 @@ export const requestController = {
     const comment: string | undefined = req.body?.comment;
     await rejectRequest(id, comment);
     res.json({ ok: true });
-  }
+  },
 };

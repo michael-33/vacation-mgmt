@@ -5,7 +5,7 @@ import { Role } from "common";
 export function requireValidator(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const user = (req as any).user;
   if (!user) {

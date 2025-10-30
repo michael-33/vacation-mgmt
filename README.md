@@ -3,6 +3,7 @@
 Root workspace for frontend (Vue) and backend (Express) with shared common package.
 
 ## Workspaces
+
 - `apps/frontend`
 - `apps/backend`
 - `packages/common`
@@ -11,3 +12,4 @@ Root workspace for frontend (Vue) and backend (Express) with shared common packa
 
 ```bash
 yarn
+```

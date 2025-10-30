@@ -36,7 +36,7 @@ import { NSelect } from "naive-ui";
 const store = useUserStore();
 const selectedId = ref<number>(store.selectedUserId);
 const options = computed(() =>
-  store.users.map((u) => ({ label: `${u.name} (${u.role})`, value: u.id }))
+  store.users.map((u) => ({ label: `${u.name} (${u.role})`, value: u.id })),
 );
 
 function onChange(val: number) {
@@ -45,6 +45,6 @@ function onChange(val: number) {
 
 watch(
   () => store.selectedUserId,
-  (v) => (selectedId.value = v)
+  (v) => (selectedId.value = v),
 );
 </script>

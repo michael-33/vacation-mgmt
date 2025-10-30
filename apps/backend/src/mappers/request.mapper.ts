@@ -1,4 +1,4 @@
-import { VacationRequest } from '../domain/entities/vacation-request.js';
+import { VacationRequest } from "../domain/entities/vacation-request.js";
 
 // converts database record to VacationRequest entity
 export function mapRequest(row: any): VacationRequest {
@@ -10,6 +10,6 @@ export function mapRequest(row: any): VacationRequest {
     reason: row.reason,
     status: row.status,
     comments: row.comments,
-    created_at: row.created_at
+    created_at: row.created_at,
   };
 }

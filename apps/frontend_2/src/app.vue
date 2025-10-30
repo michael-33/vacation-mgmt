@@ -13,6 +13,11 @@ import NavBar from "@/components/layout/nav-bar.vue";
 /* minimal global styles */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial;
 }
 </style>

@@ -31,8 +31,12 @@ interface Item {
 const items = ref<Item[]>([]);
 
 async function load() {
-  const res = await api.get("/requests/me");
-  items.value = res.data.items;
+  try {
+    const res = await api.get("/requests/me");
+    items.value = res.data.items;
+  } catch (e) {
+    console.error(e);
+  }
 }
 function reload() {
   load();
