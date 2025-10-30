@@ -4,6 +4,7 @@
     :data="items"
     :bordered="false"
     size="small"
+    :max-height="230"
   />
 </template>
 
@@ -28,12 +29,12 @@ withDefaults(defineProps<{ items?: Item[] }>(), { items: () => [] });
 const columns = [
   { title: "start", key: "start_date" },
   { title: "end", key: "end_date" },
-  { title: "reason", key: "reason" },
+  { title: "reason", key: "reason", ellipsis: { tooltip: true } },
   {
     title: "status",
     key: "status",
     render: (row: Item) => h(StatusBadge, { status: row.status }),
   },
-  { title: "comments", key: "comments" },
+  { title: "comments", key: "comments", ellipsis: { tooltip: true } },
 ];
 </script>

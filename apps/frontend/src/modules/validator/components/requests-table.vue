@@ -4,6 +4,7 @@
     :data="items"
     :bordered="false"
     size="small"
+    :max-height="420"
   />
 </template>
 
@@ -63,13 +64,13 @@ const columns = ref<DataTableColumns<Item>>([
   { title: "user id", key: "user_id" },
   { title: "start", key: "start_date" },
   { title: "end", key: "end_date" },
-  { title: "reason", key: "reason" },
+  { title: "reason", key: "reason", ellipsis: { tooltip: true } },
   {
     title: "status",
     key: "status",
     render: (row: Item) => h(StatusBadge, { status: row.status as any }),
   },
-  { title: "comments", key: "comments" },
+  { title: "comments", key: "comments", ellipsis: { tooltip: true } },
   {
     title: "actions",
     key: "actions",

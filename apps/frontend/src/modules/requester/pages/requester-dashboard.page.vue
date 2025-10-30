@@ -1,7 +1,7 @@
 <template>
   <section style="padding: 16px; display: grid; gap: 16px">
     <n-card title="new vacation request">
-      <RequestForm @submitted="reload" />
+      <RequestForm :existing="items" @submitted="reload" />
     </n-card>
 
     <n-card title="my requests">

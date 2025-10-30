@@ -9,8 +9,13 @@ export function errorHandler(
 ) {
   console.error("error:", err);
 
-  // Zod & known validation errors
+  // zod & known validation errors
   const anyErr = err as any;
+  if (typeof anyErr?.status === "number") {
+    return res
+      .status(anyErr.status)
+      .json({ error: anyErr.message ?? "error", details: anyErr.details });
+  }
   if (anyErr?.name === "ZodError") {
     return res
       .status(400)
