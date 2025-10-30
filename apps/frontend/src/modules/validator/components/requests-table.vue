@@ -20,7 +20,7 @@ interface Item {
   start_date: string;
   end_date: string;
   reason: string | null;
-  status: string;
+  status: RequestStatus;
   comments: string | null;
   created_at: string;
 }
@@ -74,23 +74,27 @@ const columns = ref<DataTableColumns<Item>>([
     title: "actions",
     key: "actions",
     width: 180,
-    align: 'center',
+    align: "center",
     render: (row: Item) => {
-      if ((row.status as any) !== (RequestStatus as any).PENDING) {
-        return h("div");
+      if (row.status !== RequestStatus.PENDING) {
+        return h("span", { style: "color:#999;" }, "—");
       }
-      return h("div", { style: "display:flex;gap:8px;" }, [
-        h(
-          NButton,
-          { size: "small", type: "primary", onClick: () => approve(row) },
-          { default: () => "approve" }
-        ),
-        h(
-          NButton,
-          { size: "small", type: "error", onClick: () => reject(row) },
-          { default: () => "reject" }
-        ),
-      ]);
+      return h(
+        "div",
+        { style: "display:flex;gap:8px;justify-content:center;" },
+        [
+          h(
+            NButton,
+            { size: "small", type: "primary", onClick: () => approve(row) },
+            { default: () => "approve" }
+          ),
+          h(
+            NButton,
+            { size: "small", type: "error", onClick: () => reject(row) },
+            { default: () => "reject" }
+          ),
+        ]
+      );
     },
   },
 ]);

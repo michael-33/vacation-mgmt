@@ -1,3 +1,5 @@
+import { RequestStatus } from "./status";
+import { Role } from "./roles";
 export interface RequestCreateDTO {
   startDate: string; // ISO date
   endDate: string; // ISO date
@@ -10,7 +12,7 @@ export interface RequestDTO {
   startDate: string;
   endDate: string;
   reason: string | null;
-  status: "PENDING" | "APPROVED" | "REJECTED";
+  status: RequestStatus;
   comments: string | null;
   createdAt: string; // ISO timestamp
 }
@@ -18,5 +20,5 @@ export interface RequestDTO {
 export interface UserDTO {
   id: number;
   name: string;
-  role: "REQUESTER" | "VALIDATOR";
+  role: Role;
 }

@@ -11,11 +11,9 @@ export function requireValidator(
   if (!user) {
     return res.status(401).json({ error: "user not found in request" });
   }
-  
+
   if (user.role !== Role.VALIDATOR) {
-    return res
-      .status(403)
-      .json({ error: "access denied: validator only", uss: user });
+    return res.status(403).json({ error: "access denied: validator only" });
   }
 
   next();

@@ -11,13 +11,14 @@
 import { h } from "vue";
 import { NDataTable } from "naive-ui";
 import StatusBadge from "@/components/common/status-badge.vue";
+import { RequestStatus } from "common";
 
 interface Item {
   id: number;
   start_date: string;
   end_date: string;
   reason: string | null;
-  status: string;
+  status: RequestStatus;
   comments: string | null;
   created_at: string;
 }
@@ -31,7 +32,7 @@ const columns = [
   {
     title: "status",
     key: "status",
-    render: (row: Item) => h(StatusBadge, { status: row.status as any }),
+    render: (row: Item) => h(StatusBadge, { status: row.status }),
   },
   { title: "comments", key: "comments" },
 ];

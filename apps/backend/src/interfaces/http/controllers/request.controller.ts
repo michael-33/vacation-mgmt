@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { z } from "zod";
 import { createVacationRequest } from "../../../application/usecases/create-request.usecase.js";
 import { listMyRequests } from "../../../application/usecases/list-my-requests.usecase.js";
 import { listAllRequests } from "../../../application/usecases/list-all-requests.usecase.js";
@@ -10,6 +11,13 @@ export const requestController = {
   // post /requests
   async create(req: Request, res: Response) {
     const user = (req as any).user;
+    // basic shape guard before domain validation
+    const schema = z.object({
+      startDate: z.string(),
+      endDate: z.string(),
+      reason: z.string().optional().nullable(),
+    });
+    schema.parse(req.body);
     await createVacationRequest(user.id, req.body);
     res.status(201).json({ ok: true });
   },
@@ -37,7 +45,10 @@ export const requestController = {
   // post /requests/:id/reject
   async reject(req: Request, res: Response) {
     const id = Number(req.params.id);
-    const comment: string | undefined = req.body?.comment;
+    const body = z
+      .object({ comment: z.string().optional().nullable() })
+      .parse(req.body ?? {});
+    const comment: string | undefined = body.comment ?? undefined;
     await rejectRequest(id, comment);
     res.json({ ok: true });
   },

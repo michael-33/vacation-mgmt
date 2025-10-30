@@ -1,16 +1,12 @@
 <template>
-  <n-config-provider>
-    <n-message-provider>
-      <n-dialog-provider>
-        <NavBar />
-        <router-view />
-      </n-dialog-provider>
-    </n-message-provider>
-  </n-config-provider>
+  <AppProviders>
+    <NavBar />
+    <router-view />
+  </AppProviders>
 </template>
 
 <script setup lang="ts">
-import { NConfigProvider, NMessageProvider, NDialogProvider } from "naive-ui";
+import AppProviders from "@/components/app-providers.vue";
 import NavBar from "@/components/layout/nav-bar.vue";
 </script>
 

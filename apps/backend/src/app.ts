@@ -8,7 +8,13 @@ import { ENV } from "./config/env.js";
 export const createApp = () => {
   const app = express();
 
-  app.use(cors());
+  const altOrigin = ENV.FRONTEND_ORIGIN.replace("localhost", "127.0.0.1");
+  app.use(
+    cors({
+      origin: [ENV.FRONTEND_ORIGIN, altOrigin],
+      credentials: true,
+    })
+  );
   app.use(express.json());
 
   app.use(ENV.API_PREFIX, routes);

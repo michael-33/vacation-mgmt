@@ -36,3 +36,23 @@ Useful root scripts
 
 - Typecheck all: `yarn typecheck`
 - Test all: `yarn test`
+
+## Technical choices
+
+- Monorepo: Yarn workspaces (`apps/*`, `packages/*`) for shared types and schemas.
+- Frontend: Vue 3 + Vite + Pinia + Naive UI.
+  - Role‑based routing guard; providers centralized in `AppProviders`.
+  - API base URL via `VITE_API_BASE_URL` with a localhost fallback.
+  - Vitest + Vue Test Utils for unit tests.
+- Backend: Express + Knex + SQLite + Zod.
+  - CORS restricted to the frontend origin (`FRONTEND_ORIGIN`).
+  - Dev autoreload with `tsx watch`.
+  - Zod validation at controller/domain layers; standardized error handler.
+- Common package: shared enums, DTOs, and Zod schemas
+
+## Known limitations
+
+- Auth is simulated via `x-user-id` header; no real authentication/authorization.
+- SQLite is used for simplicity; not optimized for concurrency or production scale.
+- No E2E tests; only basic unit tests on frontend components.
+- CORS allows only localhost dev origins by default; adjust via `FRONTEND_ORIGIN` if needed.

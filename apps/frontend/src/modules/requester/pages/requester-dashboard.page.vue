@@ -17,6 +17,7 @@ import RequestForm from "../components/request-form.vue";
 import MyRequestsTable from "../components/my-requests-table.vue";
 import api from "@/services/api";
 import { useUserStore } from "@/stores/user.store";
+import { RequestStatus } from "common";
 
 interface Item {
   id: number;
@@ -24,20 +25,25 @@ interface Item {
   start_date: string;
   end_date: string;
   reason: string | null;
-  status: string;
+  status: RequestStatus;
   comments: string | null;
   created_at: string;
 }
 
 const items = ref<Item[]>([]);
-const store = useUserStore(); 
+const isLoading = ref(false);
+const store = useUserStore();
 
 async function load() {
+  if (isLoading.value) return;
+  isLoading.value = true;
   try {
     const res = await api.get("/requests/me");
     items.value = res.data.items;
   } catch (e) {
     console.error(e);
+  } finally {
+    isLoading.value = false;
   }
 }
 function reload() {
@@ -50,6 +56,6 @@ watch(
   () => store.selectedUserId,
   () => {
     load();
-  },
+  }
 );
 </script>
