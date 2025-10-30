@@ -1,0 +1,22 @@
+{
+  "name": "common",
+  "packageManager": "yarn@4.9.2",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm,cjs --clean",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "echo \"(common) no lint rules yet\"",
+    "test": "echo \"(common) no tests yet\""
+  },
+  "dependencies": {
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0"
+  }
+}

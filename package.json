@@ -1,0 +1,19 @@
+{
+  "name": "vacation-mgmt",
+  "private": true,
+  "packageManager": "yarn@4.9.2",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "yarn workspaces foreach -v run build",
+    "dev": "concurrently -k -n FRONTEND,BACKEND \"yarn workspace frontend dev\" \"yarn workspace backend dev\"",
+    "typecheck": "yarn workspaces foreach -v run typecheck",
+    "lint": "yarn workspaces foreach -v run lint",
+    "test": "yarn workspaces foreach -v run test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
