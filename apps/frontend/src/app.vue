@@ -1,11 +1,23 @@
-<script setup lang="ts"></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <n-config-provider>
+    <n-message-provider>
+      <n-dialog-provider>
+        <NavBar />
+        <router-view />
+      </n-dialog-provider>
+    </n-message-provider>
+  </n-config-provider>
 </template>
 
-<style scoped></style>
+<script setup lang="ts">
+import { NConfigProvider, NMessageProvider, NDialogProvider } from "naive-ui";
+import NavBar from "@/components/layout/nav-bar.vue";
+</script>
+
+<style>
+/* minimal global styles */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+</style>

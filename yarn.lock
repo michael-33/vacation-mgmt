@@ -2842,6 +2842,7 @@ __metadata:
     "@types/node": "npm:^22.18.11"
     "@vitejs/plugin-vue": "npm:^6.0.1"
     "@vue/tsconfig": "npm:^0.8.1"
+    common: "workspace:*"
     npm-run-all2: "npm:^8.0.4"
     pinia: "npm:^3.0.3"
     typescript: "npm:~5.9.0"
