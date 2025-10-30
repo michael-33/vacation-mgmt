@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import { h, ref } from "vue";
 import { NDataTable, NButton, useDialog, useMessage } from "naive-ui";
+import type { DataTableColumns } from "naive-ui";
 import StatusBadge from "@/components/common/status-badge.vue";
 import { RequestStatus } from "common";
 
@@ -58,7 +59,7 @@ function reject(row: Item) {
   });
 }
 
-const columns = ref([
+const columns = ref<DataTableColumns<Item>>([
   { title: "user id", key: "user_id" },
   { title: "start", key: "start_date" },
   { title: "end", key: "end_date" },
@@ -72,6 +73,8 @@ const columns = ref([
   {
     title: "actions",
     key: "actions",
+    width: 180,
+    align: 'center',
     render: (row: Item) => {
       if ((row.status as any) !== (RequestStatus as any).PENDING) {
         return h("div");
@@ -80,12 +83,12 @@ const columns = ref([
         h(
           NButton,
           { size: "small", type: "primary", onClick: () => approve(row) },
-          { default: () => "approve" },
+          { default: () => "approve" }
         ),
         h(
           NButton,
           { size: "small", type: "error", onClick: () => reject(row) },
-          { default: () => "reject" },
+          { default: () => "reject" }
         ),
       ]);
     },

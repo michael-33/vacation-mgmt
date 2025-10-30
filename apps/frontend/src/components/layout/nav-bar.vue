@@ -8,11 +8,12 @@
       border-bottom: 1px solid #eee;
     "
   >
-    <strong style="margin-right: auto">vacation management</strong>
+    <strong style="margin-right: auto; font-size: 18px"
+      >vacation management</strong
+    >
 
-    <RouterLink to="/requester">requester</RouterLink>
-    <RouterLink to="/validator" style="margin-right: 16px"
-      >validator</RouterLink
+    <strong style="margin-right: 8px; color: #555; font-size: 16px"
+      >select user:</strong
     >
 
     <n-select
@@ -28,7 +29,7 @@
 <script setup lang="ts">
 // nav with user switcher using naive ui
 import { computed, ref, watch } from "vue";
-import { RouterLink, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user.store";
 import { NSelect } from "naive-ui";
 import { Role } from "common";

@@ -16,6 +16,10 @@ const routes: RouteRecordRaw[] = [
       import("@/modules/validator/pages/validator-dashboard.page.vue"),
     meta: { role: Role.VALIDATOR },
   },
+  {
+    path: "/:pathMatch(.*)*",
+    component: () => import("@/modules/common/pages/not-found.page.vue"),
+  },
 ];
 const router = createRouter({ history: createWebHistory(), routes });
 
