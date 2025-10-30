@@ -11,6 +11,7 @@
 import { h, ref } from "vue";
 import { NDataTable, NButton, useDialog, useMessage } from "naive-ui";
 import StatusBadge from "@/components/common/status-badge.vue";
+import { RequestStatus } from "common";
 
 interface Item {
   id: number;
@@ -71,8 +72,11 @@ const columns = ref([
   {
     title: "actions",
     key: "actions",
-    render: (row: Item) =>
-      h("div", { style: "display:flex;gap:8px;" }, [
+    render: (row: Item) => {
+      if ((row.status as any) !== (RequestStatus as any).PENDING) {
+        return h("div");
+      }
+      return h("div", { style: "display:flex;gap:8px;" }, [
         h(
           NButton,
           { size: "small", type: "primary", onClick: () => approve(row) },
@@ -83,7 +87,8 @@ const columns = ref([
           { size: "small", type: "error", onClick: () => reject(row) },
           { default: () => "reject" },
         ),
-      ]),
+      ]);
+    },
   },
 ]);
 </script>

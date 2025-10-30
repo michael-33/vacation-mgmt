@@ -3,12 +3,12 @@
   "packageManager": "yarn@4.9.2",
   "version": "0.0.1",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm,cjs --clean",
+    "build": "tsup src/index.ts --dts --format esm,cjs --clean --out-dir dist",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "echo \"(common) no lint rules yet\"",
     "test": "echo \"(common) no tests yet\""

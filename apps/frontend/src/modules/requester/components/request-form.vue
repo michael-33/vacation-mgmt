@@ -21,6 +21,7 @@ import api from "@/services/api";
 const message = useMessage();
 const dates = ref<[number, number] | null>(null); // timestamps
 const reason = ref<string>("");
+const emit = defineEmits<{ (e: "submitted"): void }>();
 
 async function onSubmit() {
   if (!dates.value) {
@@ -38,7 +39,7 @@ async function onSubmit() {
     dates.value = null;
     reason.value = "";
     // emit to parent to reload table
-    defineEmits<{ (e: "submitted"): void }>().call(null, "submitted");
+    emit("submitted");
   } catch (e) {
     console.error(e);
   }

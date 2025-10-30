@@ -1,4 +1,4 @@
-import { Knex } from "knex";
+import type { Knex } from "knex";
 
 // create users table
 export async function up(knex: Knex): Promise<void> {

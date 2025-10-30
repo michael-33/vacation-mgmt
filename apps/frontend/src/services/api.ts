@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // axios instance configured for the api
-const api = axios.create({ baseURL: "/api/v1" });
+const api = axios.create({ baseURL: "http://localhost:3001/api/v1" });
 
 // basic user id header management for auth simulation
 let currentUserId: number | null = null;

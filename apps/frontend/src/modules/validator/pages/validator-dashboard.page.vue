@@ -3,7 +3,12 @@
     <n-card>
       <div style="display: flex; gap: 12px; align-items: center">
         <StatusFilter v-model:status="status" />
-        <n-button @click="load">reload</n-button>
+        <n-button :loading="isLoading" :disabled="isLoading" @click="load"
+          >reload</n-button
+        >
+        <span v-if="isLoading" style="color: #666; font-size: 12px"
+          >reloading...</span
+        >
       </div>
     </n-card>
 
@@ -33,17 +38,24 @@ interface Item {
 }
 
 const items = ref<Item[]>([]);
+const isLoading = ref(false);
 const status = ref<RequestStatus | "ALL">("ALL");
 const message = useMessage();
 
 async function load() {
-  const res = await api.get("/requests"); // backend guards validator role
-  items.value = res.data.items || [];
+  if (isLoading.value) return;
+  isLoading.value = true;
+  try {
+    const res = await api.get("/requests"); // backend guards validator role
+    items.value = res.data.items || [];
+  } finally {
+    isLoading.value = false;
+  }
 }
 const filtered = computed(() =>
   status.value === "ALL"
     ? items.value
-    : items.value.filter((i) => i.status === status.value),
+    : items.value.filter((i) => i.status === status.value)
 );
 
 async function approve(id: number) {

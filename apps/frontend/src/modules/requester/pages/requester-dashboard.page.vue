@@ -11,11 +11,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { NCard } from "naive-ui";
 import RequestForm from "../components/request-form.vue";
 import MyRequestsTable from "../components/my-requests-table.vue";
 import api from "@/services/api";
+import { useUserStore } from "@/stores/user.store";
 
 interface Item {
   id: number;
@@ -29,6 +30,7 @@ interface Item {
 }
 
 const items = ref<Item[]>([]);
+const store = useUserStore(); 
 
 async function load() {
   try {
@@ -43,4 +45,11 @@ function reload() {
 }
 
 onMounted(load);
+
+watch(
+  () => store.selectedUserId,
+  () => {
+    load();
+  },
+);
 </script>

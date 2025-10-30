@@ -1,4 +1,4 @@
-import { Knex } from "knex";
+import type { Knex } from "knex";
 import { Role, RequestStatus } from "common";
 
 // add initial data to the db

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts",
     "build": "tsup src/server.ts --dts --format esm,cjs --clean",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "migrate": "knex migrate:latest --knexfile knexfile.cjs",

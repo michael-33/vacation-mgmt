@@ -28,23 +28,26 @@
 <script setup lang="ts">
 // nav with user switcher using naive ui
 import { computed, ref, watch } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user.store";
 import { NSelect } from "naive-ui";
-// const nSelect = NSelect; // fix linting error
+import { Role } from "common";
 
 const store = useUserStore();
+const router = useRouter();
 const selectedId = ref<number>(store.selectedUserId);
 const options = computed(() =>
-  store.users.map((u) => ({ label: `${u.name} (${u.role})`, value: u.id })),
+  store.users.map((u) => ({ label: `${u.name} (${u.role})`, value: u.id }))
 );
 
 function onChange(val: number) {
   store.selectUser(val);
+  const role = store.users.find((u) => u.id === val)!.role;
+  router.push(role === Role.VALIDATOR ? "/validator" : "/requester");
 }
 
 watch(
   () => store.selectedUserId,
-  (v) => (selectedId.value = v),
+  (v) => (selectedId.value = v)
 );
 </script>

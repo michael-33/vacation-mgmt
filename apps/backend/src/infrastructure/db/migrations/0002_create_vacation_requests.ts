@@ -1,4 +1,4 @@
-import { Knex } from "knex";
+import type { Knex } from "knex";
 import { RequestStatus } from "common";
 
 // create vacation_requests table
